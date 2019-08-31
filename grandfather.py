@@ -29,8 +29,9 @@ print ("starting")
 
 # get media controller
 mc = cast.media_controller
-#need to make sure simplehttpserver is running to serve local audio file
+# need to make sure simplehttpserver is running to serve local audio file
 filepath = 'http://192.168.2.95:8000/grandfather/'
+
 bing15file = filepath + 'bing15.wav'
 bing30file = filepath + 'bing30.wav'
 bing45file = filepath + 'bing45.wav'
@@ -54,7 +55,7 @@ def castclock(clockfile):
 
 # debug chromecast
 if debug:
-	bongfile = filepath + 'bong1.wav'
+	bongfile = filepath + 'bong12.wav'
 	print ('Starting debug')
 	castclock(bongfile)
 	print ("end of debug")
@@ -64,6 +65,8 @@ while True:
 	currentDT = datetime.datetime.now()
 	hour = currentDT.hour
 	hour12 = hour%12
+	if hour12 == 0:
+		hour12 = 12
 	minute = currentDT.minute
 	second = currentDT.second
 
