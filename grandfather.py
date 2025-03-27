@@ -1,4 +1,4 @@
-randfather clock application by Jon Staebell 1/4/2019
+#Grandfather clock application by Jon Staebell 1/4/2019
 #updated static IP address 12/16/2021
 #updated 12/18/20202, pychromecast doesn't support python 2 so
 # ran pip install PyChromecast==1.0.3 zeroconf==0.19.1
