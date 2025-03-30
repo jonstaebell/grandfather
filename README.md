@@ -1,4 +1,4 @@
-# torscan
+# Grandfather v2
 (c) 2025 Jon Staebell
 
 Program to turn a Google Chromecast into a grandfather clock
@@ -10,8 +10,9 @@ of computer to a specified Chromecast using Pychromecast.
 
 ### Dependencies
 
-Requires crontab set up to run at 15/30/45 minutes during desired times. e.g.:
-0,15,30,45 * 7-21 * * /path/to/python /path/to/grandfather.py
+Requires crontab set up to run at 15/30/45 minutes during desired times. 
+e.g. to set to run between 7 a.m. and 9:45 p.m. use:
+0,15,30,45 7-21 * * * /path/to/python /path/to/grandfather.py
 
 Set the following parameters in grandfather.ini: 
    device_friendly_name

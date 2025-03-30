@@ -1,7 +1,7 @@
-# Grandfather 2.0 (c) 2025 Jon Staebell
+ Grandfather 2.0 (c) 2025 Jon Staebell
 #
 # NOTE! requires crontab set up to run at 15/30/45 minutes during desired times. e.g.:
-# 0,15,30,45 * 7-21 * * /path/to/python /path/to/grandfather.py
+# 0,15,30,45 7-21 * * * /path/to/python /path/to/grandfather.py
 #
 # Need to change the following parameters below:
 #   webhook_url (optional, set to "" to disable Discord webhook calls on errors
@@ -18,11 +18,10 @@ def main():
     webhook_url = params ['webhook_url']
     device_friendly_name = params ['device_friendly_name']
     clockvolume = params ['clockvolume']
-
     # build filepath, including IP address, to send to simple server
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(("8.8.8.8",80))
-    media = 'http://' + s.getsockname()[0] + ':8000' + os.getcwd() + "/bong" + get_filename()  + ".wav"
+    media = 'http://' + s.getsockname()[0] + ':8000' + os.path.dirname(__file__) + "/bong" + get_filename()  + ".wav"
     cast = get_cast(device_friendly_name)
     if cast  == "":
         call_webhook(webhook_url, "Grandfather Missing Chromecast " + device_friendly_name) #error or missing chromecast
