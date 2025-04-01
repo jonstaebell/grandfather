@@ -40,7 +40,7 @@ jonstaebell@gmail.com
 
 ## License
 
-torscan Copyright (C) 2025 Jon Staebell
+grandfather Copyright (C) 2025 Jon Staebell
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
