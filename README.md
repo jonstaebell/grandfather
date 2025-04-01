@@ -25,6 +25,7 @@ Requires simple server running on port 8000 on same computer
 ### Executing program
 
 * install in same directory as grandfather.ini
+* all of the .wav files (bong*) must be in the same directory as the .py
 * python3 grandfather.py 
 
 ## Authors
