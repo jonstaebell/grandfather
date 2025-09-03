@@ -39,9 +39,8 @@ def main():
 
         filename = get_filename()
         if filename:
-            media_path = os.path.join(os.path.dirname(__file__), f"bong{filename}.wav")
-
-            if not os.path.exists(media_path):
+            media_path = f"/projects/grandfather/bong{filename}.wav"
+            if not os.path.exists(f"/home/jon/{media_path}"):
                 call_error(f"Missing media file: {media_path}")
                 return
 
@@ -82,14 +81,29 @@ def call_cast(cast, media_url, volume):
     except Exception as e:
         call_error(f"Error playing media: {media_url} — {e}")
 
-def get_cast(device_friendly_name):
+def get_cast(device_friendly_name, timeout=5):
     try:
-        chromecasts = pychromecast.get_chromecasts()
+        chromecasts, browser = pychromecast.get_chromecasts(timeout=timeout)
     except Exception as e:
         call_error(f"Error discovering Chromecast devices: {e}")
         return None
 
-    return next((cc for cc in chromecasts if cc.device.friendly_name.startswith(device_friendly_name)), None)
+    if not chromecasts:
+        call_error("No Chromecast devices found.")
+        return None
+
+    # Normalize names and compare case-insensitively
+    for cc in chromecasts:
+        try:
+            name = cc.cast_info.friendly_name.strip().lower()
+            target = device_friendly_name.strip().lower()
+            if name == target:
+                return cc
+        except Exception:
+            continue
+
+    call_error(f"No Chromecast matching '{device_friendly_name}' found.")
+    return None
 
 def call_error(output_message):
     # reports error condition
