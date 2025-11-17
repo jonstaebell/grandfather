@@ -76,7 +76,7 @@ def call_cast(cast, media_url, volume):
             return 
 
         # wait for file to finish playing, then reset volume to previous level
-        time.sleep(45)
+        time.sleep(30)
         cast.set_volume(old_volume)
     except Exception as e:
         call_error(f"Error playing media: {media_url} — {e}")
